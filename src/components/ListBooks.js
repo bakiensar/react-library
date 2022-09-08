@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Loading from './Loading'
+import { Link } from 'react-router-dom'
 
 const ListBooks = (props) => {
   const [books, setBooks] = useState(null)
@@ -16,9 +17,9 @@ const ListBooks = (props) => {
           setTimeout(
             () =>
               setCategories(resCat.data).catch((caterr) => {
-                console.log('caterr:' + caterr)
+                console.log('caterr:', caterr)
               }),
-            5000,
+            1000,
           )
         })
       })
@@ -31,6 +32,11 @@ const ListBooks = (props) => {
   }
   return (
     <div className="container my-5">
+      <div className="m-3 d-flex justify-content-end">
+        <Link to="/add-book" className="btn btn-primary ">
+          Kitap Ekle
+        </Link>
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -43,13 +49,13 @@ const ListBooks = (props) => {
         <tbody>
           {books.map((book) => {
             const category = categories.find(
-              (cat) => cat.id === books.categoryid,
+              (cat) => cat.id === book.categoryid,
             )
             return (
               <tr>
                 <td>{book.name}</td>
                 <td>{book.author}</td>
-                <td>{categories.name}</td>
+                <td>{category.name}</td>
                 <td>{book.isbn}</td>
               </tr>
             )

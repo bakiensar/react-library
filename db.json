@@ -5,35 +5,41 @@
       "name": "Yaban",
       "author": "Yakup Kadri Karaosmanoğlu",
       "isbn": 11111111111,
-      "categoryid": 1
+      "categoryid": "1"
     },
     {
       "id": 2,
       "name": "Yer Altından Notlar",
       "author": "Dostoyevski",
       "isbn": 11111111112,
-      "categoryid": 2
+      "categoryid": "2"
     },
     {
       "id": 3,
       "name": "Denemeler",
       "author": "Montaigne",
       "isbn": 11111111113,
-      "categoryid": 3
+      "categoryid": "3"
+    },
+    {
+      "id": 1662630565099,
+      "name": "Sineklerin Tanrısı",
+      "author": "William Golling",
+      "isbn": "",
+      "categoryid": "1"
     }
   ],
-
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Roman"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Hikaye"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Deneme"
     }
   ]
