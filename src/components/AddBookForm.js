@@ -5,11 +5,13 @@ import Loading from './Loading'
 
 const AddBookForm = (props) => {
   const navigate = useNavigate()
+  //veri tabanından çektiğimiz kategoriler
   const [categories, setCategories] = useState(null)
   const [bookName, setBookName] = useState('')
   const [author, setAuthor] = useState('')
   const [isbn, setIsbn] = useState('')
   const [category, setCategory] = useState('')
+  //seçtiğimiz kategori
 
   useEffect(() => {
     axios.get('http://localhost:3004/categories').then((res) => {
