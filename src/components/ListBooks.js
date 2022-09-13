@@ -14,19 +14,14 @@ const ListBooks = (props) => {
       .then((resBook) => {
         console.log(resBook)
         setBooks(resBook.data)
-        axios.get('http://localhost:3004/categories').then((resCat) => {
-          setTimeout(
-            () =>
-              setCategories(resCat.data).catch((caterr) => {
-                console.log('caterr:', caterr)
-              }),
-            1000,
-          )
-        })
+        axios
+          .get('http://localhost:3004/categories')
+          .then((resCat) => {
+            setCategories(resCat.data)
+          })
+          .catch((err) => console.log('categories err', err))
       })
-      .catch((bookerr) => {
-        console.log(bookerr)
-      })
+      .catch((err) => console.log('books err', err))
   }, [didUpdate])
 
   const deleteBook = (id) => {
@@ -88,6 +83,12 @@ const ListBooks = (props) => {
                     >
                       Sil
                     </button>
+                    <Link
+                      to={`edit-book/${book.id}`}
+                      className="btn btn-outline-secondary btn-sm"
+                    >
+                      DÜZENLE
+                    </Link>
                   </div>
                 </td>
               </tr>

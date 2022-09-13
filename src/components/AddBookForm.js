@@ -14,11 +14,13 @@ const AddBookForm = (props) => {
   //seçtiğimiz kategori
 
   useEffect(() => {
-    axios.get('http://localhost:3004/categories').then((res) => {
-      setCategories(res.data).catch((err) => {
-        console.log('category err', err)
+    axios
+      .get('http://localhost:3004/categories')
+      .then((res) => {
+        console.log(res)
+        setCategories(res.data)
       })
-    })
+      .catch((err) => console.log(err))
   }, [])
 
   const handleSubmit = (event) => {

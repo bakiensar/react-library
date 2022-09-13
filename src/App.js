@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './Pages/Home'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AddBook from './Pages/AddBook'
+import EditBook from './Pages/EditBook'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add-book" element={<AddBook />} />
+        <Route path="/edit-book/:kitapId" element={<EditBook />} />
       </Routes>
     </BrowserRouter>
   )
