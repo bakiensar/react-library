@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
+import Modal from './Modal'
 
 const ListBooks = (props) => {
   const [books, setBooks] = useState(null)
   const [categories, setCategories] = useState(null)
   const [didUpdate, setDidUpdate] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [silinecekKitap, setSilinecekKitap] = useState(null)
+  const [silinecekKitapIsmi, setSilinecekKitapIsmi] = useState('')
 
   useEffect(() => {
     axios
@@ -30,6 +34,7 @@ const ListBooks = (props) => {
       .then((res) => {
         console.log(res)
         setDidUpdate(!didUpdate)
+        setShowModal(false)
       })
       .catch((err) => console.log(err))
   }
@@ -63,21 +68,22 @@ const ListBooks = (props) => {
               (cat) => cat.id === book.categoryid,
             )
             return (
-              <tr>
+              <tr key={book.id}>
                 <td>{book.name}</td>
                 <td>{book.author}</td>
-                <td>{category.name}</td>
+                <td>{category?.name}</td>
                 <td className="text-center">
                   {book.isbn === '' ? '-' : book.isbn}
                 </td>
                 <td>
-                  <div
-                    className="btn-group d-flex justify-content-center"
-                    role="group"
-                    aria-label="Basic example"
-                  >
+                  <div className="btn-group d-flex justify-content-center">
                     <button
-                      onClick={() => deleteBook(book.id)}
+                      onClick={() => {
+                        setShowModal(true)
+                        // deleteBook(book.id)
+                        setSilinecekKitap(book.id)
+                        setSilinecekKitapIsmi(book.name)
+                      }}
                       type="button"
                       className="btn btn-outline-danger btn-sm"
                     >
@@ -96,6 +102,14 @@ const ListBooks = (props) => {
           })}
         </tbody>
       </table>
+      {showModal === true && (
+        <Modal
+          aciklama={'Silmek İstediğinize Emin misiniz?'}
+          title={silinecekKitapIsmi}
+          onConfirm={() => deleteBook(silinecekKitap)}
+          onCancel={() => setShowModal(false)}
+        />
+      )}
     </div>
   )
 }

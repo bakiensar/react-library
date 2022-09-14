@@ -3,16 +3,20 @@ import Header from '../components/Header'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loading from '../components/Loading'
+import Modal from '../components/Modal'
 
 const EditBook = (props) => {
   const params = useParams()
   const navigate = useNavigate()
+
+  console.log('params', params)
 
   const [categories, setCategories] = useState(null)
   const [bookName, setBookName] = useState('')
   const [author, setAuthor] = useState('')
   const [isbn, setIsbn] = useState('')
   const [category, setCategory] = useState('')
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     axios
@@ -36,6 +40,9 @@ const EditBook = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    setShowModal(true)
+  }
+  const editBook = () => {
     if (bookName === '' || author === '' || category === '') {
       alert('Kitap adı, Yazar adı ve Kategori boş bırakılamaz')
       return
@@ -47,10 +54,12 @@ const EditBook = (props) => {
       isbn: isbn,
       categoryId: category,
     }
+    console.log('updatedBook', updatedBook)
     axios
       .put(`http://localhost:3004/books/${params.kitapId}`, updatedBook)
       .then((res) => {
         console.log(res)
+        setShowModal(false)
         navigate('/')
       })
       .catch((err) => console.log('edit error', err))
@@ -127,6 +136,14 @@ const EditBook = (props) => {
           </div>
         </form>
       </div>
+      {showModal === true && (
+        <Modal
+          onCancel={() => setShowModal(false)}
+          onConfirm={() => editBook()}
+          title={bookName}
+          aciklama="Kaydetmek İçin Onaylayın"
+        />
+      )}
     </div>
   )
 }

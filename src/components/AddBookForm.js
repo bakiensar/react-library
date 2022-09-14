@@ -97,7 +97,11 @@ const AddBookForm = (props) => {
                 Kategori Seçin
               </option>
               {categories.map((cat) => {
-                return <option value={cat.id}>{cat.name}</option>
+                return (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                )
               })}
             </select>
           </div>
