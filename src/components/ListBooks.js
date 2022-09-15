@@ -3,8 +3,12 @@ import axios from 'axios'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
 import Modal from './Modal'
-
+import { useSelector } from 'react-redux'
+// subscribe olmaya yarar
 const ListBooks = (props) => {
+  const uygulamaninGenelStatei = useSelector((state) => state)
+  //use selector parametre olarak bir fonksiyon alır bu fonksiyon store içindeki bütün state (veya state.categories) i alır ve bunu geri döndürür
+  console.log('uygulamagenelstatei', uygulamaninGenelStatei)
   const [books, setBooks] = useState(null)
   const [categories, setCategories] = useState(null)
   const [didUpdate, setDidUpdate] = useState(false)

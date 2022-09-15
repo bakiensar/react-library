@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Home from './Pages/Home'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AddBook from './Pages/AddBook'
 import EditBook from './Pages/EditBook'
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_CATEGORIES_START',
+    })
+  }, [])
+
   return (
     <BrowserRouter>
       <Routes>
