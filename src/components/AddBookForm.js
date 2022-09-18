@@ -2,26 +2,29 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loading from './Loading'
+import { useSelector, useDispatch } from 'react-redux'
 
 const AddBookForm = (props) => {
+  const dispatch = useDispatch()
+  const { categoriesState } = useSelector((state) => state)
   const navigate = useNavigate()
   //veri tabanından çektiğimiz kategoriler
-  const [categories, setCategories] = useState(null)
+  // const [categories, setCategories] = useState(null)
   const [bookName, setBookName] = useState('')
   const [author, setAuthor] = useState('')
   const [isbn, setIsbn] = useState('')
   const [category, setCategory] = useState('')
   //seçtiğimiz kategori
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3004/categories')
-      .then((res) => {
-        console.log(res)
-        setCategories(res.data)
-      })
-      .catch((err) => console.log(err))
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:3004/categories')
+  //     .then((res) => {
+  //       console.log(res)
+  //       setCategories(res.data)
+  //     })
+  //     .catch((err) => console.log(err))
+  // }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -40,6 +43,7 @@ const AddBookForm = (props) => {
       .post('http://localhost:3004/books', newBook)
       .then((res) => {
         console.log('kitap ekle res', res)
+        dispatch({ type: 'ADD_BOOK', payload: newBook })
         setBookName('')
         setAuthor('')
         setIsbn('')
@@ -51,7 +55,7 @@ const AddBookForm = (props) => {
       })
   }
 
-  if (categories === null) {
+  if (categoriesState.success !== true) {
     return <Loading />
   }
   return (
@@ -96,7 +100,7 @@ const AddBookForm = (props) => {
               <option value={''} selected>
                 Kategori Seçin
               </option>
-              {categories.map((cat) => {
+              {categoriesState.categories.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}

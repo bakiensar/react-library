@@ -4,14 +4,16 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loading from '../components/Loading'
 import Modal from '../components/Modal'
+import { useSelector } from 'react-redux'
 
 const EditBook = (props) => {
+  const { categoriesState } = useSelector((state) => state)
   const params = useParams()
   const navigate = useNavigate()
 
   console.log('params', params)
 
-  const [categories, setCategories] = useState(null)
+  // const [categories, setCategories] = useState(null)
   const [bookName, setBookName] = useState('')
   const [author, setAuthor] = useState('')
   const [isbn, setIsbn] = useState('')
@@ -28,12 +30,12 @@ const EditBook = (props) => {
         setIsbn(res.data.isbn)
         setCategory(res.data.categoryId)
 
-        axios
-          .get('http://localhost:3004/categories')
-          .then((res) => {
-            setCategories(res.data)
-          })
-          .catch((err) => console.log('categories err', err))
+        // axios
+        //   .get('http://localhost:3004/categories')
+        //   .then((res) => {
+        //     setCategories(res.data)
+        //   })
+        //   .catch((err) => console.log('categories err', err))
       })
       .catch((err) => console.log(err))
   }, [])
@@ -64,7 +66,7 @@ const EditBook = (props) => {
       })
       .catch((err) => console.log('edit error', err))
   }
-  if (categories === null) {
+  if (categoriesState.success !== true) {
     return <Loading />
   }
   return (
@@ -111,7 +113,7 @@ const EditBook = (props) => {
                 <option value={''} selected>
                   Kategori Seçin
                 </option>
-                {categories.map((cat) => {
+                {categoriesState.categories.map((cat) => {
                   return (
                     <option key={cat.id} value={cat.id}>
                       {cat.name}

@@ -6,30 +6,30 @@ import Modal from './Modal'
 import { useSelector } from 'react-redux'
 // subscribe olmaya yarar
 const ListBooks = (props) => {
-  const uygulamaninGenelStatei = useSelector((state) => state)
+  const { categoriesState, booksState } = useSelector((state) => state)
   //use selector parametre olarak bir fonksiyon alır bu fonksiyon store içindeki bütün state (veya state.categories) i alır ve bunu geri döndürür
-  console.log('uygulamagenelstatei', uygulamaninGenelStatei)
-  const [books, setBooks] = useState(null)
-  const [categories, setCategories] = useState(null)
+  console.log('categoriesState', categoriesState)
+  // const [books, setBooks] = useState(null)
+  // const [categories, setCategories] = useState(null)
   const [didUpdate, setDidUpdate] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [silinecekKitap, setSilinecekKitap] = useState(null)
   const [silinecekKitapIsmi, setSilinecekKitapIsmi] = useState('')
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3004/books')
-      .then((resBook) => {
-        console.log(resBook)
-        setBooks(resBook.data)
-        axios
-          .get('http://localhost:3004/categories')
-          .then((resCat) => {
-            setCategories(resCat.data)
-          })
-          .catch((err) => console.log('categories err', err))
-      })
-      .catch((err) => console.log('books err', err))
+    // axios
+    //   .get('http://localhost:3004/books')
+    //   .then((resBook) => {
+    //     console.log(resBook)
+    //     setBooks(resBook.data)
+    //     // axios
+    //     //   .get('http://localhost:3004/categories')
+    //     //   .then((resCat) => {
+    //     //     setCategories(resCat.data)
+    //     //   })
+    //     //   .catch((err) => console.log('categories err', err))
+    //   })
+    //   .catch((err) => console.log('books err', err))
   }, [didUpdate])
 
   const deleteBook = (id) => {
@@ -42,7 +42,7 @@ const ListBooks = (props) => {
       })
       .catch((err) => console.log(err))
   }
-  if (books === null || categories === null) {
+  if (booksState.success !== true || categoriesState.success !== true) {
     return <Loading />
   }
   return (
@@ -67,8 +67,8 @@ const ListBooks = (props) => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => {
-            const category = categories.find(
+          {booksState.books.map((book) => {
+            const category = categoriesState.categories.find(
               (cat) => cat.id === book.categoryid,
             )
             return (
@@ -119,3 +119,11 @@ const ListBooks = (props) => {
 }
 
 export default ListBooks
+
+// {
+//   randevular.map((randevu)=>{
+//     const arananHasta = Hastalar.find((hasta)=>
+//       hasta.id===randevu.hastaId)
+//       return
+//   })
+// }
