@@ -16,91 +16,15 @@
     },
     {
       "id": 3,
-      "name": "Denemelerrrrrrrrrr",
+      "name": "Denemelerrrrrrrrrr edit",
       "author": "Montaigneeeeeee",
-      "isbn": 11111111113
+      "isbn": 11111111113,
+      "categoryId": "1"
     },
     {
-      "id": 1663507862489,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663507926479,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508568239,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508572135,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508573758,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508574226,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508577056,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508577520,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508577954,
-      "name": "asd",
-      "author": "ds",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508778365,
-      "name": "asdafsfd",
-      "author": "gdsgdf",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508809190,
-      "name": "dd",
-      "author": "dd",
-      "isbn": "",
-      "categoryid": "2"
-    },
-    {
-      "id": 1663508830370,
-      "name": "tt",
-      "author": "tt",
+      "id": 1663602843243,
+      "name": "sada",
+      "author": "fasfds",
       "isbn": "",
       "categoryid": "1"
     }

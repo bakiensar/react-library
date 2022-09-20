@@ -32,7 +32,26 @@ const booksReducer = (state = initialState, action) => {
     case 'ADD_BOOK':
       return {
         ...state,
-        book: [...state.books, action.payload],
+        books: [...state.books, action.payload],
+      }
+    case 'DELETE_BOOK':
+      const filteredBooks = state.books.filter(
+        (item) => item.id != action.payload,
+      )
+      return {
+        ...state,
+        books: filteredBooks,
+      }
+    case 'EDIT_BOOK':
+      //1.güncellenecek kitabı o anki diziden çıkar
+
+      const filteredBooksEdit = state.books.filter(
+        (item) => item.id != action.payload.id,
+      )
+      return {
+        //2.güncel halini diziye ekle
+        ...state,
+        books: [...filteredBooksEdit, action.payload],
       }
 
     default:

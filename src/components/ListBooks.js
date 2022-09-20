@@ -3,9 +3,11 @@ import axios from 'axios'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
 import Modal from './Modal'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
 // subscribe olmaya yarar
 const ListBooks = (props) => {
+  const dispatch = useDispatch()
   const { categoriesState, booksState } = useSelector((state) => state)
   //use selector parametre olarak bir fonksiyon alır bu fonksiyon store içindeki bütün state (veya state.categories) i alır ve bunu geri döndürür
   console.log('categoriesState', categoriesState)
@@ -37,6 +39,7 @@ const ListBooks = (props) => {
       .delete(`http://localhost:3004/books/${id}`)
       .then((res) => {
         console.log(res)
+        dispatch({ type: 'DELETE_BOOK', payload: id })
         setDidUpdate(!didUpdate)
         setShowModal(false)
       })
@@ -69,7 +72,7 @@ const ListBooks = (props) => {
         <tbody>
           {booksState.books.map((book) => {
             const category = categoriesState.categories.find(
-              (cat) => cat.id === book.categoryid,
+              (cat) => cat.id == book.categoryid,
             )
             return (
               <tr key={book.id}>
