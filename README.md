@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+![library-gif](https://github.com/bakiensar/react-library/blob/master/library.gif)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
