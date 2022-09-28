@@ -13,7 +13,7 @@ const ListCategories = () => {
   return (
     <div className="container my-5">
       <div className="m-3 d-flex justify-content-end">
-        <Link to="/add-book" className="btn btn-primary ">
+        <Link to="/add-category" className="btn btn-primary ">
           Kategori Ekle
         </Link>
       </div>
